@@ -17,8 +17,7 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
                                                      ChangePasswordUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
-
-    private String currentUser;
+    private String currentUser; // Tracks the username of the currently logged-in user
 
     @Override
     public boolean existsByName(String identifier) {
@@ -41,4 +40,12 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
         users.put(user.getName(), user);
     }
 
+    @Override
+    public void setCurrentUser(String username) {
+        this.currentUser = username;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
 }
